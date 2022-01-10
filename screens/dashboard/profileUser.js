@@ -13,6 +13,11 @@ import fontFamily from '../../constants/fontFamily';
 import LinearGradient from 'react-native-linear-gradient';
 import Carousel from 'react-native-snap-carousel';
 import images from '../../constants/images';
+
+
+const SLIDER_WIDTH = Dimensions.get('window').width;
+const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+const ITEM_HEIGHT = Math.round((ITEM_WIDTH * 3) / 4);
 const ProfileUser = ({navigation}) => {
   const [firstItem, setFirstItem] = useState(0);
   const cards = [
@@ -127,9 +132,6 @@ const ProfileUser = ({navigation}) => {
 };
 export default ProfileUser;
 const styles = StyleSheet.create({
-  pagerView: {
-    height: 250,
-  },
   mainContainer: {
     flex: 1,
     backgroundColor: '#fff',
@@ -167,7 +169,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 20,
     width: 305,
-    resizeMode: 'center',
   },
   priceText: {
     fontSize: 30,
@@ -214,5 +215,8 @@ const styles = StyleSheet.create({
   },
   sliderDiv: {
     position: 'relative',
+    width:'100%',
+    justifyContent:"center",
+    alignItems:"center"
   },
 });

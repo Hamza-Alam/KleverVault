@@ -15,8 +15,10 @@ import fontFamily from '../../constants/fontFamily';
 import Carousel from 'react-native-snap-carousel';
 import images from '../../constants/images';
 
-const CARD_WIDTH = Dimensions.get('window').width * 0.8;
-const CARD_HEIGHT = Dimensions.get('window').height * 0.7;
+const SLIDER_WIDTH = Dimensions.get('window').width;
+const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+const ITEM_HEIGHT = Math.round((ITEM_WIDTH * 3) / 4);
+
 const Dashboard = ({navigation}) => {
   const cards = [
     {price: '$426.46', title: 'Vault Title'},
@@ -65,8 +67,8 @@ const Dashboard = ({navigation}) => {
             layout={'default'}
             data={cards}
             renderItem={renderItem}
-            sliderWidth={CARD_WIDTH}
-            itemWidth={CARD_WIDTH}
+            sliderWidth={SLIDER_WIDTH}
+            itemWidth={ITEM_WIDTH}
             hasParallaxImages={true}
             useScrollView={true}
             loop={true}
@@ -86,7 +88,8 @@ const Dashboard = ({navigation}) => {
             end={{x: 1, y: 0}}
             colors={['#A884FF', '#4D4365']}
             style={styles.commonBtn}>
-            <TouchableOpacity onPress={() => navigation.navigate('VideoScreen')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('VideoScreen')}>
               <Text style={styles.signUpText}>ADD A CHILD</Text>
             </TouchableOpacity>
           </LinearGradient>
@@ -102,13 +105,13 @@ const styles = StyleSheet.create({
   },
 
   sliderView: {
-    marginTop: 60,
+    marginTop: 30,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   cardView: {
-    height: 150,
+    height: 120,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
@@ -133,8 +136,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3EEFF',
     padding: 20,
     borderRadius: 30,
-    width: CARD_WIDTH,
-    height:450
+    width: ITEM_WIDTH,
+    height: 400,
+    marginHorizontal: 5,
+    justifyContent: 'center',
   },
   imgView: {
     width: 50,

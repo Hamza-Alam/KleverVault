@@ -12,6 +12,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import fontFamily from '../../constants/fontFamily';
 import images from '../../constants/images';
+import Slider from '@react-native-community/slider';
 
 const CARD_WIDTH = Dimensions.get('window').width * 0.8;
 const CARD_HEIGHT = Dimensions.get('window').height * 0.7;
@@ -19,8 +20,24 @@ const Video = ({navigation}) => {
   return (
     <ScrollView style={{backgroundColor: '#fff'}}>
       <View style={styles.mainContainer}>
-        <View style={{marginTop: 100}}>
+        <View
+          style={{
+            marginTop: 100,
+            height: 500,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
           <Image source={images.video} />
+        </View>
+        <View style={{marginHorizontal: 25}}>
+          <Slider
+            style={{width: '100%', height: 40}}
+            minimumValue={0}
+            maximumValue={1}
+            minimumTrackTintColor="#F3EEFF"
+            maximumTrackTintColor="#F3EEFF"
+            thumbTintColor="#A884FF"
+          />
         </View>
         <View style={styles.btnView}>
           <LinearGradient
