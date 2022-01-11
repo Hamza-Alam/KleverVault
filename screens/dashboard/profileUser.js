@@ -13,7 +13,7 @@ import fontFamily from '../../constants/fontFamily';
 import LinearGradient from 'react-native-linear-gradient';
 import Carousel from 'react-native-snap-carousel';
 import images from '../../constants/images';
-
+import DrawerHeader from '../../component/drawerHeader';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
@@ -53,81 +53,85 @@ const ProfileUser = ({navigation}) => {
     if (firstItem >= length) {
       setFirstItem(firstItem - 1);
       console.log(firstItem);
-    } else{
+    } else {
       setFirstItem(firstItem - 1);
     }
   };
   return (
-    <ScrollView>
-      <View style={styles.mainContainer}>
-        <ProfileBar name={'Selena Mark'} email={'selena@example.com'} />
-        <TouchableOpacity style={styles.editBtn}>
-          <Text style={styles.editText}>EDIT PROFILE</Text>
-        </TouchableOpacity>
-        <View style={styles.sliderView}>
-          <Text
-            style={{
-              fontFamily: fontFamily.Nunito_Bold,
-              fontSize: 16,
-              color: '#707070',
-              textAlign: 'center',
-            }}>
-            My Connected Vaults
-          </Text>
-          <View style={styles.sliderDiv}>
-            <TouchableOpacity
+    <>
+      <DrawerHeader title={'Dashboard'} backBtn={images.backBtn} />
+      <ScrollView>
+        <View style={styles.mainContainer}>
+          <ProfileBar name={'Selena Mark'} email={'selena@example.com'} />
+          <TouchableOpacity style={styles.editBtn}>
+            <Text style={styles.editText}>EDIT PROFILE</Text>
+          </TouchableOpacity>
+          <View style={styles.sliderView}>
+            <Text
               style={{
-                position: 'absolute',
-                left: '5%',
-                top: '45%',
-                zIndex: 9999999,
-              }}
-              resizeMode="cover"
-              onPress={() => moveBack()}>
-              <Image source={images.leftArrow} />
-            </TouchableOpacity>
-            <Carousel
-              layout={'default'}
-              data={cards}
-              renderItem={_renderItem}
-              sliderWidth={310}
-              itemWidth={310}
-              firstItem={firstItem}
-              inactiveSlideScale={0.94}
-              inactiveSlideOpacity={0.7}
-              hasParallaxImages={true}
-            />
-            <TouchableOpacity
-              style={{
-                position: 'absolute',
-                right: '5%',
-                top: '45%',
-                zIndex: 9999999,
-              }}
-              resizeMode="cover"
-              onPress={() => moveNext()}>
-              <Image source={images.rightArrow} />
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.btnView}>
-            <TouchableOpacity
-              style={[styles.commonBtn, {backgroundColor: '#F1EBFF'}]}>
-              <Text style={styles.addVault}>ADD NEW VAULT</Text>
-            </TouchableOpacity>
-            <LinearGradient
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}
-              colors={['#A884FF', '#4D4365']}
-              style={styles.commonBtn}>
-              <TouchableOpacity onPress={() => navigation.navigate('AddChild')}>
-                <Text style={styles.addChild}>ADD A CHILD</Text>
+                fontFamily: fontFamily.Nunito_Bold,
+                fontSize: 16,
+                color: '#707070',
+                textAlign: 'center',
+              }}>
+              My Connected Vaults
+            </Text>
+            <View style={styles.sliderDiv}>
+              <TouchableOpacity
+                style={{
+                  position: 'absolute',
+                  left: '5%',
+                  top: '45%',
+                  zIndex: 9999999,
+                }}
+                resizeMode="cover"
+                onPress={() => moveBack()}>
+                <Image source={images.leftArrow} />
               </TouchableOpacity>
-            </LinearGradient>
+              <Carousel
+                layout={'default'}
+                data={cards}
+                renderItem={_renderItem}
+                sliderWidth={310}
+                itemWidth={310}
+                firstItem={firstItem}
+                inactiveSlideScale={0.94}
+                inactiveSlideOpacity={0.7}
+                hasParallaxImages={true}
+              />
+              <TouchableOpacity
+                style={{
+                  position: 'absolute',
+                  right: '5%',
+                  top: '45%',
+                  zIndex: 9999999,
+                }}
+                resizeMode="cover"
+                onPress={() => moveNext()}>
+                <Image source={images.rightArrow} />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.btnView}>
+              <TouchableOpacity
+                style={[styles.commonBtn, {backgroundColor: '#F1EBFF'}]}>
+                <Text style={styles.addVault}>ADD NEW VAULT</Text>
+              </TouchableOpacity>
+              <LinearGradient
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                colors={['#A884FF', '#4D4365']}
+                style={styles.commonBtn}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('AddChild')}>
+                  <Text style={styles.addChild}>ADD A CHILD</Text>
+                </TouchableOpacity>
+              </LinearGradient>
+            </View>
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 };
 export default ProfileUser;
@@ -215,8 +219,8 @@ const styles = StyleSheet.create({
   },
   sliderDiv: {
     position: 'relative',
-    width:'100%',
-    justifyContent:"center",
-    alignItems:"center"
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

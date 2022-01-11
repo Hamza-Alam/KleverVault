@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import MainNavigator from './navigation/mainNavigation';
 import {navigationRef} from './navigation/navHelper';
+import Drawer from './navigation/drawerNavigation';
 
 const App = () => {
   return (

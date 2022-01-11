@@ -20,6 +20,9 @@ const user = require('../assets/img/user.png');
 const rightArrow = require('../assets/img/rightArrow.png');
 const leftArrow = require('../assets/img/leftArrow.png');
 const video = require('../assets/img/video.png');
+const drawerIcon = require('../assets/img/drawerIcon.png');
+const searchIcon = require('../assets/img/searchBtn.png');
+const backBtn = require('../assets/img/backBtn.png');
 
 export default {
   topHeaderLogo,
@@ -43,5 +46,8 @@ export default {
   couple,
   rightArrow,
   leftArrow,
-  video
+  video,
+  drawerIcon,
+  searchIcon,
+  backBtn,
 };

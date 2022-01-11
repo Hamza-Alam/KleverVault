@@ -34,7 +34,7 @@ const SignIn = ({navigation}) => {
               colors={['#A884FF', '#4D4365']}
               style={styles.commonBtn}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('Dashboard')}>
+                onPress={() => navigation.navigate('Drawer')}>
                 <Text style={styles.signUpText}>LOGIN</Text>
               </TouchableOpacity>
             </LinearGradient>

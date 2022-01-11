@@ -14,6 +14,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import fontFamily from '../../constants/fontFamily';
 import Carousel from 'react-native-snap-carousel';
 import images from '../../constants/images';
+import DrawerHeader from '../../component/drawerHeader';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
@@ -62,6 +63,7 @@ const Dashboard = ({navigation}) => {
   return (
     <ScrollView style={{backgroundColor: '#fff'}}>
       <View style={styles.mainContainer}>
+        <DrawerHeader title={'Children'} />
         <View style={styles.sliderView}>
           <Carousel
             layout={'default'}

@@ -14,6 +14,7 @@ import ChildAccount from '../screens/child/childAccount';
 import SavingAccount from '../screens/child/savingAccount';
 import Dashboard from '../screens/dashboard';
 import Video from '../screens/dashboard/video';
+import DrawerNavigator from './drawerNavigation';
 
 const Stack = createNativeStackNavigator();
 const MainNavigator = ({navigation}) => {
@@ -46,47 +47,11 @@ const MainNavigator = ({navigation}) => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Dashboard"
-          component={Dashboard}
-          options={{
-            headerShown: true,
-            headerTitleAlign: 'center',
-            headerShadowVisible: false,
-
-            headerStyle: {
-              elevation: 0,
-              shadowOpacity: 0,
-              borderBottomWidth: 0,
-            },
-            headerTitleStyle: {
-              fontFamily: fontFamily.Nunito_Bold,
-              fontSize: 20,
-              color: '#A884FF',
-            },
-            title: 'Children',
-          }}
+          name="Drawer"
+          component={DrawerNavigator}
+          options={{headerShown: false}}
         />
-        <Stack.Screen
-          name="ProfileUser"
-          component={ProfileUser}
-          options={{
-            headerShown: true,
-            headerTitleAlign: 'center',
-            headerShadowVisible: false,
 
-            headerStyle: {
-              elevation: 0,
-              shadowOpacity: 0,
-              borderBottomWidth: 0,
-            },
-            headerTitleStyle: {
-              fontFamily: fontFamily.Nunito_Bold,
-              fontSize: 20,
-              color: '#A884FF',
-            },
-            title: 'Dashboard',
-          }}
-        />
         <Stack.Screen
           name="AddChild"
           component={AddChild}
