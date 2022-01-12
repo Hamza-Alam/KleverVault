@@ -49,27 +49,16 @@ const MainNavigator = ({navigation}) => {
         <Stack.Screen
           name="Drawer"
           component={DrawerNavigator}
-          options={{headerShown: false}}
+          options={{
+            headerShown: false,
+          }}
         />
 
         <Stack.Screen
           name="AddChild"
           component={AddChild}
           options={{
-            headerShown: true,
-            headerTitleAlign: 'center',
-            headerShadowVisible: false,
-            headerStyle: {
-              elevation: 0,
-              shadowOpacity: 0,
-              borderBottomWidth: 0,
-            },
-            headerTitleStyle: {
-              fontFamily: fontFamily.Nunito_Bold,
-              fontSize: 20,
-              color: '#A884FF',
-            },
-            title: 'Add Child',
+            headerShown: false,
           }}
         />
         <Stack.Screen

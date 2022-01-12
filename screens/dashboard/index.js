@@ -20,7 +20,7 @@ const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 const ITEM_HEIGHT = Math.round((ITEM_WIDTH * 3) / 4);
 
-const Dashboard = ({navigation}) => {
+const Dashboard = ({navigation, props}) => {
   const cards = [
     {price: '$426.46', title: 'Vault Title'},
     {price: '$426.45', title: 'Vault Title'},
@@ -63,7 +63,7 @@ const Dashboard = ({navigation}) => {
   return (
     <ScrollView style={{backgroundColor: '#fff'}}>
       <View style={styles.mainContainer}>
-        <DrawerHeader title={'Children'} />
+        <DrawerHeader title={'Children'} {...navigation} search={true} />
         <View style={styles.sliderView}>
           <Carousel
             layout={'default'}

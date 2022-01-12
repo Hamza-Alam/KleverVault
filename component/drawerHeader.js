@@ -5,22 +5,31 @@ import fontFamily from '../constants/fontFamily';
 import images from '../constants/images';
 
 const DrawerHeader = props => {
-  const {title, backBtn, navigation} = props;
+  const {title, backBtn, navigation, search} = props;
+  console.log('Props:', navigation);
   return (
     <View style={styles.mainHeader}>
       <View style={styles.drawerImg}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          {backBtn ? (
-            <Image style={{width: 18, height: 18}} source={backBtn} />
-          ) : (
+        {backBtn ? (
+          <TouchableOpacity onPress={() => props.goBack()}>
+            <Image
+              style={{width: 22, height: 18}}
+              source={backBtn}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => props.openDrawer()}>
             <Image source={images.drawerIcon} />
-          )}
-        </TouchableOpacity>
+          </TouchableOpacity>
+        )}
       </View>
       <Text style={styles.title}>{title}</Text>
-      <View style={styles.searchImg}>
-        <Image source={images.searchIcon} />
-      </View>
+   
+        <View style={styles.searchImg}>
+          <Image source={images.searchIcon} />
+        </View>
+      
     </View>
   );
 };

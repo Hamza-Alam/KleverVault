@@ -59,7 +59,11 @@ const ProfileUser = ({navigation}) => {
   };
   return (
     <>
-      <DrawerHeader title={'Dashboard'} backBtn={images.backBtn} />
+      <DrawerHeader
+        title={'Dashboard'}
+        backBtn={images.backBtn}
+        {...navigation}
+      />
       <ScrollView>
         <View style={styles.mainContainer}>
           <ProfileBar name={'Selena Mark'} email={'selena@example.com'} />

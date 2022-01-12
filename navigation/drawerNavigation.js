@@ -2,8 +2,8 @@ import * as React from 'react';
 import {Image} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Dashboard from '../screens/dashboard';
-import ProfileUser from '../screens/dashboard/profileUser'
-
+import ProfileUser from '../screens/dashboard/profileUser';
+import DrawerHeader from '../component/drawerHeader';
 
 const Drawer = createDrawerNavigator();
 const DrawerNavigator = ({navigation}) => {
@@ -12,7 +12,9 @@ const DrawerNavigator = ({navigation}) => {
       <Drawer.Screen
         name="Dashboard"
         component={Dashboard}
-        options={{headerShown: false}}
+        options={{
+          headerShown: false,
+        }}
       />
       <Drawer.Screen
         name="ProfileUser"

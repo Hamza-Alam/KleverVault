@@ -16,7 +16,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import Hook from '../../lib/hook';
 import images from '../../constants/images';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-
+import DrawerHeader from '../../component/drawerHeader';
 
 const AddChild = ({navigation}) => {
   const [date, setDate] = useState(new Date(null));
@@ -73,76 +73,84 @@ const AddChild = ({navigation}) => {
     });
   };
   return (
-    <ScrollView style={{backgroundColor:"#fff"}}>
-      <View style={styles.mainContainer}>
-        <View style={[styles.formView, {marginTop: kbHeight ? 50 : 50}]}>
-          <Text
-            style={{
-              fontFamily: fontFamily.Nunito_Regular,
-              textAlign: 'center',
-              marginBottom: 30,
-            }}>
-            Enter credentials for your child
-          </Text>
-          <View style={styles.multiInput}>
-            <TextInput
-              style={[styles.input, styles.width140]}
-              placeholder="First Name"
-            />
-            <TextInput
-              style={[styles.input, styles.width140]}
-              placeholder="Last Name"
-            />
-          </View>
-          <TouchableOpacity style={[styles.input]} onPress={showDatepicker}>
+    <>
+      <DrawerHeader
+        title={'Add Child'}
+        backBtn={images.backBtn}
+        {...navigation}
+      />
+      <ScrollView style={{backgroundColor: '#fff'}}>
+        <View style={styles.mainContainer}>
+          <View style={[styles.formView, {marginTop: kbHeight ? 50 : 50}]}>
             <Text
               style={{
                 fontFamily: fontFamily.Nunito_Regular,
-                fontSize: 16,
-                color: '#707070',
+                textAlign: 'center',
+                marginBottom: 30,
               }}>
-              {date != null ? date.toDateString() : 'Date Of Birth'}
+              Enter credentials for your child
             </Text>
-            <Image source={images.datePick} style={styles.datePick} />
-          </TouchableOpacity>
-
-          {show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode={mode}
-              is24Hour={true}
-              display="default"
-              onChange={onChange}
-            />
-          )}
-          <TouchableOpacity onPress={selectFile}>
-            <View style={styles.uploadView}>
-              <View style={styles.imgDiv}>
-                {source ? (
-                  <Image style={{width: 100, height: 100}} source={source} />
-                ) : (
-                  <Image source={images.uploadImg} />
-                )}
-
-                <Image source={images.camera} style={styles.cameraImage} />
-              </View>
+            <View style={styles.multiInput}>
+              <TextInput
+                style={[styles.input, styles.width140]}
+                placeholder="First Name"
+              />
+              <TextInput
+                style={[styles.input, styles.width140]}
+                placeholder="Last Name"
+              />
             </View>
-          </TouchableOpacity>
-          <View style={styles.btnView}>
-            <LinearGradient
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}
-              colors={['#A884FF', '#4D4365']}
-              style={styles.commonBtn}>
-              <TouchableOpacity onPress={() => navigation.navigate('ChildAccount')}>
-                <Text style={styles.signUpText}>CONFIRM ADD CHILD</Text>
-              </TouchableOpacity>
-            </LinearGradient>
+            <TouchableOpacity style={[styles.input]} onPress={showDatepicker}>
+              <Text
+                style={{
+                  fontFamily: fontFamily.Nunito_Regular,
+                  fontSize: 16,
+                  color: '#707070',
+                }}>
+                {date != null ? date.toDateString() : 'Date Of Birth'}
+              </Text>
+              <Image source={images.datePick} style={styles.datePick} />
+            </TouchableOpacity>
+
+            {show && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={mode}
+                is24Hour={true}
+                display="default"
+                onChange={onChange}
+              />
+            )}
+            <TouchableOpacity onPress={selectFile}>
+              <View style={styles.uploadView}>
+                <View style={styles.imgDiv}>
+                  {source ? (
+                    <Image style={{width: 100, height: 100}} source={source} />
+                  ) : (
+                    <Image source={images.uploadImg} />
+                  )}
+
+                  <Image source={images.camera} style={styles.cameraImage} />
+                </View>
+              </View>
+            </TouchableOpacity>
+            <View style={styles.btnView}>
+              <LinearGradient
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                colors={['#A884FF', '#4D4365']}
+                style={styles.commonBtn}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('ChildAccount')}>
+                  <Text style={styles.signUpText}>CONFIRM ADD CHILD</Text>
+                </TouchableOpacity>
+              </LinearGradient>
+            </View>
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 };
 export default AddChild;
