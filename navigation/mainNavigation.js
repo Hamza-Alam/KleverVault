@@ -65,40 +65,14 @@ const MainNavigator = ({navigation}) => {
           name="ChildAccount"
           component={ChildAccount}
           options={{
-            headerShown: true,
-            headerTitleAlign: 'center',
-            headerShadowVisible: false,
-            headerStyle: {
-              elevation: 0,
-              shadowOpacity: 0,
-              borderBottomWidth: 0,
-            },
-            headerTitleStyle: {
-              fontFamily: fontFamily.Nunito_Bold,
-              fontSize: 20,
-              color: '#A884FF',
-            },
-            title: 'Child Account',
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="SavingAccount"
           component={SavingAccount}
           options={{
-            headerShown: true,
-            headerTitleAlign: 'center',
-            headerShadowVisible: false,
-            headerStyle: {
-              elevation: 0,
-              shadowOpacity: 0,
-              borderBottomWidth: 0,
-            },
-            headerTitleStyle: {
-              fontFamily: fontFamily.Nunito_Bold,
-              fontSize: 20,
-              color: '#A884FF',
-            },
-            title: 'Saving Account',
+            headerShown: false,
           }}
         />
       </Fragment>

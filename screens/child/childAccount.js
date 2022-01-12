@@ -14,90 +14,102 @@ import LinearGradient from 'react-native-linear-gradient';
 import Hook from '../../lib/hook';
 import images from '../../constants/images';
 import ProfileBar from '../../component/profileBar';
+import DrawerHeader from '../../component/drawerHeader';
 
 const ChildAccount = ({navigation}) => {
   const [kbHeight] = Hook.useKeyboard();
 
   return (
-    <ScrollView style={{flex: 1, backgroundColor: '#fff'}}>
-      <View style={styles.mainContainer}>
-        <ProfileBar name={'Caleb Mark'} email={'12-12-2007'} />
-        <View style={styles.multiBtn}>
-          <TouchableOpacity
-            style={styles.commonBtn}
-            onPress={() => navigation.navigate('SavingAccount')}>
-            <Image source={images.trading} />
+    <>
+      <DrawerHeader
+        title={'Child Account'}
+        backBtn={images.backBtn}
+        {...navigation}
+      />
+      <ScrollView style={{flex: 1, backgroundColor: '#fff'}}>
+        <View style={styles.mainContainer}>
+          <ProfileBar name={'Caleb Mark'} email={'12-12-2007'} />
+          <View style={styles.multiBtn}>
+            <TouchableOpacity
+              style={styles.commonBtn}
+              onPress={() => navigation.navigate('SavingAccount')}>
+              <Image source={images.trading} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.commonBtn}
+              onPress={() => navigation.navigate('SavingAccount')}>
+              <Image source={images.board} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.commonBtn}
+              onPress={() => navigation.navigate('SavingAccount')}>
+              <Image source={images.moneyBank} />
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity style={styles.editBtn}>
+            <Text style={styles.editText}>EDIT CALEB'S PROFILE</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.commonBtn}
-            onPress={() => navigation.navigate('SavingAccount')}>
-            <Image source={images.board} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.commonBtn}
-            onPress={() => navigation.navigate('SavingAccount')}>
-            <Image source={images.moneyBank} />
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity style={styles.editBtn}>
-          <Text style={styles.editText}>EDIT CALEB'S PROFILE</Text>
-        </TouchableOpacity>
-        <View style={styles.listView}>
-          <Text
-            style={{
-              fontFamily: fontFamily.Nunito_Bold,
-              color: '#707070',
-              fontSize: 16,
-              textAlign: 'center',
-              marginBottom: 20,
-            }}>
-            Chores List
-          </Text>
-          <View style={styles.listMulti}>
-            <View style={styles.listCard}>
-              <View
-                style={[styles.lineBar, {backgroundColor: '#FFB334'}]}></View>
-              <Text style={styles.listText}>
-                Tidy up bedroom including toys
-              </Text>
-              <Text style={styles.priceText}>$1</Text>
+          <View style={styles.listView}>
+            <Text
+              style={{
+                fontFamily: fontFamily.Nunito_Bold,
+                color: '#707070',
+                fontSize: 16,
+                textAlign: 'center',
+                marginBottom: 20,
+              }}>
+              Chores List
+            </Text>
+            <View style={styles.listMulti}>
+              <View style={styles.listCard}>
+                <View
+                  style={[styles.lineBar, {backgroundColor: '#FFB334'}]}></View>
+                <Text style={styles.listText}>
+                  Tidy up bedroom including toys
+                </Text>
+                <Text style={styles.priceText}>$1</Text>
+              </View>
+              <View style={styles.listCard}>
+                <View
+                  style={[styles.lineBar, {backgroundColor: '#69BB00'}]}></View>
+                <Text style={styles.listText}>
+                  Clean the inside of dad's car
+                </Text>
+                <Text style={styles.priceText}>$2</Text>
+              </View>
+              <View style={styles.listCard}>
+                <View
+                  style={[styles.lineBar, {backgroundColor: '#FF8181'}]}></View>
+                <Text style={styles.listText}>
+                  Put the dishes in dishwasher
+                </Text>
+                <Text style={styles.priceText}>$2</Text>
+              </View>
+              <View style={styles.listCard}>
+                <View
+                  style={[styles.lineBar, {backgroundColor: '#9163FF'}]}></View>
+                <Text style={styles.listText}>
+                  Help grandma in garden with leaves
+                </Text>
+                <Text style={styles.priceText}>$2</Text>
+              </View>
             </View>
-            <View style={styles.listCard}>
-              <View
-                style={[styles.lineBar, {backgroundColor: '#69BB00'}]}></View>
-              <Text style={styles.listText}>Clean the inside of dad's car</Text>
-              <Text style={styles.priceText}>$2</Text>
-            </View>
-            <View style={styles.listCard}>
-              <View
-                style={[styles.lineBar, {backgroundColor: '#FF8181'}]}></View>
-              <Text style={styles.listText}>Put the dishes in dishwasher</Text>
-              <Text style={styles.priceText}>$2</Text>
-            </View>
-            <View style={styles.listCard}>
-              <View
-                style={[styles.lineBar, {backgroundColor: '#9163FF'}]}></View>
-              <Text style={styles.listText}>
-                Help grandma in garden with leaves
-              </Text>
-              <Text style={styles.priceText}>$2</Text>
+            <View style={styles.btnView}>
+              <LinearGradient
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                colors={['#A884FF', '#4D4365']}
+                style={styles.common}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('ChildAccount')}>
+                  <Text style={styles.signUpText}>ADD CHORE WIT REWARD</Text>
+                </TouchableOpacity>
+              </LinearGradient>
             </View>
           </View>
-          <View style={styles.btnView}>
-            <LinearGradient
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}
-              colors={['#A884FF', '#4D4365']}
-              style={styles.common}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('ChildAccount')}>
-                <Text style={styles.signUpText}>ADD CHORE WIT REWARD</Text>
-              </TouchableOpacity>
-            </LinearGradient>
-          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 };
 export default ChildAccount;

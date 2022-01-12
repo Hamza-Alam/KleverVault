@@ -25,11 +25,10 @@ const DrawerHeader = props => {
         )}
       </View>
       <Text style={styles.title}>{title}</Text>
-   
-        <View style={styles.searchImg}>
-          <Image source={images.searchIcon} />
-        </View>
-      
+
+      <View style={styles.searchImg}>
+        {search && <Image source={images.searchIcon} />}
+      </View>
     </View>
   );
 };
@@ -48,15 +47,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   drawerImg: {
-    width: '33.3%',
+    width: '20%',
   },
   searchImg: {
-    width: '33.3%',
+    width: '20%',
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
   title: {
-    width: '33.3%',
+    width: '60%',
     textAlign: 'center',
     color: '#A884FF',
     fontFamily: fontFamily.Nunito_Bold,
