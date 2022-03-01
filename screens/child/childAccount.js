@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
-  Platform,
+  FlatList,
   Image,
 } from 'react-native';
 import fontFamily from '../../constants/fontFamily';
@@ -18,6 +18,26 @@ import DrawerHeader from '../../component/drawerHeader';
 
 const ChildAccount = ({navigation}) => {
   const [kbHeight] = Hook.useKeyboard();
+
+  const childAccount = [
+    {text: 'Tidy up bedroom including toys', price: '$1', bgColor: '#FFB334'},
+    {text: 'Clean the inside of dads car', price: '$2', bgColor: '#69BB00'},
+    {text: 'Put the dishes in dishwasher', price: '$2', bgColor: '#FF8181'},
+    {
+      text: 'Help grandma in garden with leaves',
+      price: '$1',
+      bgColor: '#9163FF',
+    },
+  ];
+  const listRender = ({item, index}) => {
+    return (
+      <View style={styles.listCard} key={index}>
+        <View style={[styles.lineBar,{backgroundColor: item.bgColor}]}></View>
+        <Text style={styles.listText}>{item.text}</Text>
+        <Text style={styles.priceText}>{item.price}</Text>
+      </View>
+    );
+  };
 
   return (
     <>
@@ -61,7 +81,12 @@ const ChildAccount = ({navigation}) => {
               Chores List
             </Text>
             <View style={styles.listMulti}>
-              <View style={styles.listCard}>
+              <FlatList
+                data={childAccount}
+                renderItem={listRender}
+                keyExtractor={item => item.id}
+              />
+              {/* <View style={styles.listCard}>
                 <View
                   style={[styles.lineBar, {backgroundColor: '#FFB334'}]}></View>
                 <Text style={styles.listText}>
@@ -92,7 +117,7 @@ const ChildAccount = ({navigation}) => {
                   Help grandma in garden with leaves
                 </Text>
                 <Text style={styles.priceText}>$2</Text>
-              </View>
+              </View> */}
             </View>
             <View style={styles.btnView}>
               <LinearGradient

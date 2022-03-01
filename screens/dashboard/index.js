@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -15,45 +15,67 @@ import fontFamily from '../../constants/fontFamily';
 import Carousel from 'react-native-snap-carousel';
 import images from '../../constants/images';
 import DrawerHeader from '../../component/drawerHeader';
-
+import Swiper from 'react-native-swiper';
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 const ITEM_HEIGHT = Math.round((ITEM_WIDTH * 3) / 4);
+const width = Dimensions.get('window').width;
+const Dashboard = ({navigation}) => {
+  const [selectedId, setSelectedId] = useState(1);
 
-const Dashboard = ({navigation, props}) => {
-  const cards = [
-    {price: '$426.46', title: 'Vault Title'},
-    {price: '$426.45', title: 'Vault Title'},
-    {price: '$426.47', title: 'Vault Title'},
+  const Cards = [
+    {id: '1', price: '$426.46', title: 'Vault 1'},
+    {id: '2', price: '$426.45', title: 'Vault 2'},
+    {id: '3', price: '$426.47', title: 'Vault 3'},
+    {id: '4', price: '$426.45', title: 'Vault 4'},
+    {id: '5', price: '$426.47', title: 'Vault 5'},
   ];
   const list = [
-    {name: 'Teressa'},
-    {name: 'Selena'},
-    {name: 'Sara'},
-    {name: 'Jackob'},
-    {name: 'Teressa'},
+    {id: '1', name: 'Teressa'},
+    {id: '2', name: 'Selena'},
+    {id: '3', name: 'Sara'},
+    {id: '4', name: 'Jackob'},
+    {id: '5', name: 'Teressa'},
   ];
-  const renderItem = ({item, index}) => {
+
+  const onMomentumScrollEnd = ({nativeEvent}) => {
+    console.log('Hello');
+    const newIndex = nativeEvent.contentOffset.x / width;
+    setSelectedId(newIndex + 1);
+  };
+  const renderItem = (item, index) => {
     return (
-      <View key={index} style={styles.sliderCard}>
-        <ProfileBar name={'Selena Mark'} email={'selena@example.com'} />
-        <LinearGradient
-          style={styles.cardView}
-          start={{x: 0, y: 0}}
-          end={{x: 1, y: 0}}
-          colors={['#F9D9FF', '#FFF3CC']}>
-          <View>
-            <Text style={styles.priceText}>{item.price}</Text>
-            <Text style={styles.titleText}>{item.title}</Text>
-          </View>
-        </LinearGradient>
+      <View
+        style={{justifyContent: 'center', alignItems: 'center', marginTop: 20}}>
+        <View
+          key={index}
+          style={{
+            ...styles.sliderCard,
+            backgroundColor: selectedId == item.id ? '#fff' : '#F3EEFF',
+          }}>
+          <ProfileBar name={'Selena Mark'} email={'selena@example.com'} />
+          <LinearGradient
+            style={styles.cardView}
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+            colors={['#F9D9FF', '#FFF3CC']}>
+            <View>
+              <Text style={styles.priceText}>{item.price}</Text>
+              <Text style={styles.titleText}>{item.title}</Text>
+            </View>
+          </LinearGradient>
+        </View>
       </View>
     );
   };
   const listRender = ({item, index}) => {
     return (
       <View style={styles.listCard}>
-        <View style={styles.imgView}>
+        <View
+          style={{
+            ...styles.imgView,
+            backgroundColor: selectedId == item.id ? '#A884FF' : '#fff',
+          }}>
           <Image style={{width: 45, height: 45}} source={images.userImg} />
         </View>
         <Text style={{fontFamily: fontFamily.Nunito_Regular}}>{item.name}</Text>
@@ -61,56 +83,54 @@ const Dashboard = ({navigation, props}) => {
     );
   };
   return (
-    <ScrollView style={{backgroundColor: '#fff'}}>
-      <View style={styles.mainContainer}>
-        <DrawerHeader title={'Children'} {...navigation} search={true} />
-        <View style={styles.sliderView}>
-          <Carousel
-            layout={'default'}
-            data={cards}
-            renderItem={renderItem}
-            sliderWidth={SLIDER_WIDTH}
-            itemWidth={ITEM_WIDTH}
-            hasParallaxImages={true}
-            useScrollView={true}
-            loop={true}
-          />
-        </View>
-        <View style={styles.flatSliderView}>
-          <FlatList
-            data={list}
-            renderItem={listRender}
-            keyExtractor={item => item.id}
-            horizontal={true}
-          />
-        </View>
-        <View style={styles.btnView}>
-          <LinearGradient
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}
-            colors={['#A884FF', '#4D4365']}
-            style={styles.commonBtn}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('VideoScreen')}>
-              <Text style={styles.signUpText}>ADD A CHILD</Text>
-            </TouchableOpacity>
-          </LinearGradient>
-        </View>
+    <View style={styles.mainContainer}>
+      <DrawerHeader title={'Children'} />
+      <View style={styles.sliderView}>
+        {/* ..........Swiper ............ */}
+
+        <Swiper
+          removeClippedSubviews={false}
+          automaticallyAdjustContentInsets={true}
+          autoplay={false}
+          showsPagination={false}
+          loop={false}
+          onMomentumScrollEnd={onMomentumScrollEnd}
+          index={0}>
+          {Cards.map(renderItem)}
+        </Swiper>
       </View>
-    </ScrollView>
+      <View style={styles.flatSliderView}>
+        <FlatList
+          data={list}
+          renderItem={listRender}
+          keyExtractor={item => item.id}
+          horizontal={true}
+        />
+      </View>
+      <View style={styles.btnView}>
+        <LinearGradient
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}
+          colors={['#A884FF', '#4D4365']}
+          style={styles.commonBtn}>
+          <TouchableOpacity onPress={() => navigation.navigate('VideoScreen')}>
+            <Text style={styles.signUpText}>ADD A CHILD</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+      </View>
+    </View>
   );
 };
 export default Dashboard;
 const styles = StyleSheet.create({
   mainContainer: {
-    height: '100%',
+    flex: 1
   },
 
   sliderView: {
-    marginTop: 30,
     width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: '60%',
+    marginTop: 10,
   },
   cardView: {
     height: 120,
@@ -135,26 +155,32 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   sliderCard: {
-    backgroundColor: '#F3EEFF',
     padding: 20,
     borderRadius: 30,
     width: ITEM_WIDTH,
-    height: 400,
-    marginHorizontal: 5,
     justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   imgView: {
     width: 50,
     height: 50,
-    backgroundColor: '#A884FF',
+    // backgroundColor: '#A884FF',
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
   },
   flatSliderView: {
-    marginTop: 60,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 20
   },
   listCard: {
     marginLeft: 10,
